@@ -1,0 +1,34 @@
+<%= bootstrap_form_for(@user) do |f| %>
+  <%= f.text_field :login, icon: "user" %>
+  <%= f.email_field :email %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation, label: "Confirm Password" %>
+  <%= f.password_field :password, help: "Must be at least 6 characters long" %>
+
+  <%= f.select :product, [[1, "Apple"], [2, "Grape"]], { label: "Choose your favorite fruit:" }, { class: "selectpicker" } %>
+
+
+  <%= f.form_group :skill_level, label: { text: "Skill" }, help: "Optional Help Text" do %>
+  <%= f.radio_button :skill_level, 0, label: "Novice", checked: true %>
+  <%= f.radio_button :skill_level, 1, label: "Intermediate" %>
+  <%= f.radio_button :skill_level, 2, label: "Advanced" %>
+<% end %>
+
+<%= f.form_group :terms do %>
+  <%= f.check_box :terms, label: "I agree to the Terms of Service" %>
+<% end %>
+
+<%= f.form_group :skill_level, label: { text: "Skill" } do %>
+  <%= f.radio_button :skill_level, 0, label: "Novice", inline: true %>
+  <%= f.radio_button :skill_level, 1, label: "Intermediate", inline: true %>
+  <%= f.radio_button :skill_level, 2, label: "Advanced", inline: true %>
+<% end %>
+
+<%= f.collection_radio_buttons :skill_level, Skill.all, :id, :name %>
+<%= f.collection_check_boxes :skills, Skill.all, :id, :name %>
+
+<%= f.alert_message "Please fix the errors below." %>]]
+
+<%= f.error_summary %>
+
+<% end %>
